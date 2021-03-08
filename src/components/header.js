@@ -1,29 +1,20 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-
+import { FaDatabase as BitcoinStatsIcon } from "react-icons/fa"
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+  <header >
+    <div >
+      <h1>
         <Link
           to="/"
           style={{
-            color: `white`,
             textDecoration: `none`,
+            color: "rgb(50,50,50)"
           }}
+          className="home-link"
         >
+          <BitcoinStatsIcon />
           {siteTitle}
         </Link>
       </h1>

@@ -1,9 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
 import axios from "axios"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 import BlockchainHeader from "../images/blockchain.jpg"
@@ -15,37 +13,35 @@ import MiningHeader from "../images/mining.jpg"
 import NetworkHeader from "../images/network.jpg"
 import UTXOsHeader from "../images/utxos.jpg"
 
-
 const marketNames = {
-  "CNY": "Chinese Yuan Renminbi",
-  "USD": "US Dollar",
-  "EUR": "Euro",
-  "JPY": "Japanese Yen",
-  "GBP": "British Pound",
-  "KRW": "Korean Won",
-  "INR": "Indian Rupee",
-  "CAD": "Canadian Dollar",
-  "AUD": "Austrailian Dollar",
-  "HKD": "Hong Kong Dollar",
-  "TWD": "Taiwan Dollar",
-  "BRL": "Brazilian Real",
-  "CHF": "Swiss Franc",
-  "RUB": "Russian Ruble",
-  "THB": "Thai Baht",
-  "MXN": "Mexican Peso",
-  "GOLD": "Gold",
-  "SILVER": "Silver",
+  CNY: "Chinese Yuan Renminbi",
+  USD: "US Dollar",
+  EUR: "Euro",
+  JPY: "Japanese Yen",
+  GBP: "British Pound",
+  KRW: "Korean Won",
+  INR: "Indian Rupee",
+  CAD: "Canadian Dollar",
+  AUD: "Austrailian Dollar",
+  HKD: "Hong Kong Dollar",
+  TWD: "Taiwan Dollar",
+  BRL: "Brazilian Real",
+  CHF: "Swiss Franc",
+  RUB: "Russian Ruble",
+  THB: "Thai Baht",
+  MXN: "Mexican Peso",
+  GOLD: "Gold",
+  SILVER: "Silver",
   "2222.SR": "Saudi Aramco",
-  "AAPL": "Apple",
-  "MSFT": "Microsoft",
-  "AMZN": "Amazon",
-  "GOOG": "Alphabet",
-  "TCEHY": "Tencent",
-  "FB": "Facebook",
-  "BABA": "Alibaba",
+  AAPL: "Apple",
+  MSFT: "Microsoft",
+  AMZN: "Amazon",
+  GOOG: "Alphabet",
+  TCEHY: "Tencent",
+  FB: "Facebook",
+  BABA: "Alibaba",
   "BRK-A": "Berkshire Hathaway",
-  "TSLA": "Tesla",
-
+  TSLA: "Tesla",
 }
 
 const stockMarkets = [
@@ -118,7 +114,6 @@ const assetMarkets = [
   },
 ]
 
-
 const IndexPage = () => {
   const [currentData, setCurrentData] = React.useState(null)
   const [error, setError] = React.useState(null)
@@ -163,7 +158,6 @@ const IndexPage = () => {
   const accurateHeight = 672893
   const accurateBitcoins = 18642882.38009877
 
-
   const format = num => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
   }
@@ -177,30 +171,36 @@ const IndexPage = () => {
     totalBitcoins =
       (currentData.bestBlockHeight - accurateHeight) * 6.25 + accurateBitcoins
 
-    const companies = currentData.companyInfo.map((company) => {
-      company.marketCapBitcoin = (company.marketCapDollars * 1000000000) / currentData.bitcoinPrice
-      return company
-    }).filter((company) => company.abbreviation !== "BTC") 
-    const currencies = currentData.currencyInfo.filter((currency) => currency.abbreviation !== "BTC")  
+    const companies = currentData.companyInfo
+      .map(company => {
+        company.marketCapBitcoin =
+          (company.marketCapDollars * 1000000000) / currentData.bitcoinPrice
+        return company
+      })
+      .filter(company => company.abbreviation !== "BTC")
+    const currencies = currentData.currencyInfo.filter(
+      currency => currency.abbreviation !== "BTC"
+    )
     comparisonData = [...companies, ...currencies]
 
-
-    const nextDifficultyAdjustment = date.getTime() + (2016 - (currentData.bestBlockHeight % 2016)) * 10 * 60 * 1000
+    const nextDifficultyAdjustment =
+      date.getTime() +
+      (2016 - (currentData.bestBlockHeight % 2016)) * 10 * 60 * 1000
     nextRetargetDate = new Date(nextDifficultyAdjustment).toLocaleDateString()
 
-    const nextHalvening = date.getTime() + ((840000 - currentData.bestBlockHeight) * 10 * 60 * 1000)
+    const nextHalvening =
+      date.getTime() + (840000 - currentData.bestBlockHeight) * 10 * 60 * 1000
     nextHalveningDate = new Date(nextHalvening).toLocaleDateString()
   }
 
   console.log(currentData)
 
   return (
-    <div>
+    <Layout>
       <SEO title="Home" />
       {currentData && (
         <div>
           <main>
-            <h1 className="title">bitcoin-stats.com</h1>
             <div className="container">
               <section>
                 <h2>Markets</h2>
@@ -220,7 +220,14 @@ const IndexPage = () => {
                   </div> */}
                   <div className="stat">
                     <div className="stat-label">Volume (24h)</div>
-                    <div className="stat-value">${format(Math.round(currentData.dailyVolume * currentData.bitcoinPrice))}</div>
+                    <div className="stat-value">
+                      $
+                      {format(
+                        Math.round(
+                          currentData.dailyVolume * currentData.bitcoinPrice
+                        )
+                      )}
+                    </div>
                   </div>
                   <div className="stat">
                     <div className="stat-label">Market Cap</div>
@@ -263,8 +270,8 @@ const IndexPage = () => {
                             21000000) *
                           100
                         ).toFixed(2)
-                      )}%
-                      
+                      )}
+                      %
                     </div>
                   </div>
                   <div className="stat">
@@ -307,12 +314,16 @@ const IndexPage = () => {
                   </div>
                   <div className="stat">
                     <div className="stat-label">Blockchain Size</div>
-                    <div className="stat-value">{format(currentData.blockchainSize)} GB</div>
+                    <div className="stat-value">
+                      {format(currentData.blockchainSize)} GB
+                    </div>
                   </div>
 
                   <div className="stat">
                     <div className="stat-label">Total Transactions</div>
-                    <div className="stat-value">{format(currentData.totalTransactions)}</div>
+                    <div className="stat-value">
+                      {format(currentData.totalTransactions)}
+                    </div>
                   </div>
 
                   <Stat
@@ -385,7 +396,9 @@ const IndexPage = () => {
                   />
                   <div className="stat">
                     <div className="stat-label">Blocks until retarget</div>
-                    <div className="stat-value">{format(2016 - (currentData.bestBlockHeight % 2016))}</div>
+                    <div className="stat-value">
+                      {format(2016 - (currentData.bestBlockHeight % 2016))}
+                    </div>
                   </div>
                   <div className="stat">
                     <div className="stat-label">Estimate Retarget Date</div>
@@ -393,7 +406,9 @@ const IndexPage = () => {
                   </div>
                   <div className="stat">
                     <div className="stat-label">Next difficulty estimate</div>
-                    <div className="stat-value">{currentData.difficultyRetarget.projectedPercent}%</div>
+                    <div className="stat-value">
+                      {currentData.difficultyRetarget.projectedPercent}%
+                    </div>
                   </div>
 
                   {/* <div className="stat">
@@ -408,7 +423,7 @@ const IndexPage = () => {
                   </div> */}
                 </div>
               </section>
-             
+
               <section>
                 <h2>Markets Comparison</h2>
                 <img className="header-image" src={CompetitionHeader} />
@@ -435,7 +450,9 @@ const IndexPage = () => {
                     .map(market => {
                       return (
                         <div className="stat" key={market.abbreviation}>
-                          <div className="stat-label">{marketNames[market.abbreviation]}</div>
+                          <div className="stat-label">
+                            {marketNames[market.abbreviation]}
+                          </div>
                           <div>
                             {(
                               (totalBitcoins / market.marketCapBitcoin) *
@@ -450,11 +467,7 @@ const IndexPage = () => {
                       )
                     })}
                   <div className="stat">
-                    <div
-                      className="stat-label"
-                    >
-                      Bitcoin
-                    </div>
+                    <div className="stat-label">Bitcoin</div>
                     <div className="stat-value">
                       {format(Math.round(totalBitcoins))}
                     </div>
@@ -476,7 +489,9 @@ const IndexPage = () => {
                     .map(market => {
                       return (
                         <div className="stat" key={market.abbreviation}>
-                          <div className="stat-label">{marketNames[market.abbreviation]}</div>
+                          <div className="stat-label">
+                            {marketNames[market.abbreviation]}
+                          </div>
                           <div>
                             {(
                               (totalBitcoins / market.marketCapBitcoin) *
@@ -505,11 +520,15 @@ const IndexPage = () => {
                 </div>
                 <h3>Node Versions</h3>
                 <div className="stats">
-                  {currentData.nodeVersions.map((version) => {
-                    return(<div className="stat">
-                    <div className="stat-label">{version.version.replace("&nbsp;&nbsp;", " ")}</div>
-                      <div className="stat-value">{version.percentage}%</div>
-                  </div>)
+                  {currentData.nodeVersions.map(version => {
+                    return (
+                      <div className="stat">
+                        <div className="stat-label">
+                          {version.version.replace("&nbsp;&nbsp;", " ")}
+                        </div>
+                        <div className="stat-value">{version.percentage}%</div>
+                      </div>
+                    )
                   })}
                   {/* <div className="stat">
                     <div className="stat-label">Satoshi 0.21.0</div>
@@ -550,7 +569,7 @@ const IndexPage = () => {
                     )}
                     units="days"
                   />
-                   <div className="stat">
+                  <div className="stat">
                     <div className="stat-label">Next Date (estimated)</div>
                     <div className="stat-value">{nextHalveningDate}</div>
                   </div>
@@ -561,7 +580,7 @@ const IndexPage = () => {
                     )}
                     units="BTC"
                   />
-                 
+
                   <Stat
                     label="Bitcoin Stock to flow"
                     value={(
@@ -590,7 +609,7 @@ const IndexPage = () => {
                   </div>
                 </div>
               </section> */}
-               <section>
+              <section>
                 <h2>Mempool</h2>
                 <img className="header-image" src={MempoolHeader} />
                 <div className="stats">
@@ -602,7 +621,9 @@ const IndexPage = () => {
                   />
                   <div className="stat">
                     <div className="stat-label">Pending Fees</div>
-                    <div className="stat-value">{currentData.mempoolPendingFees} BTC</div>
+                    <div className="stat-value">
+                      {currentData.mempoolPendingFees} BTC
+                    </div>
                   </div>
                   {/* <div className="stat">
                     <div className="stat-label">Suggested Slow</div>
@@ -622,7 +643,9 @@ const IndexPage = () => {
                   </div> */}
                   <div className="stat">
                     <div className="stat-label">Percent RBF</div>
-                    <div className="stat-value">{currentData.mempoolPercentRBF}%</div>
+                    <div className="stat-value">
+                      {currentData.mempoolPercentRBF}%
+                    </div>
                   </div>
                 </div>
               </section>
@@ -632,29 +655,41 @@ const IndexPage = () => {
                 <div className="stats">
                   <div className="stat">
                     <div className="stat-label">Public Capacity</div>
-                    <div className="stat-value">{format(currentData.lightningCapacity)} BTC</div>
+                    <div className="stat-value">
+                      {format(currentData.lightningCapacity)} BTC
+                    </div>
                   </div>
                   <div className="stat">
                     <div className="stat-label">Public Capacity Value</div>
-                    <div className="stat-value">${format(Math.floor(currentData.lightningCapacity * currentData.bitcoinPrice))}</div>
+                    <div className="stat-value">
+                      $
+                      {format(
+                        Math.floor(
+                          currentData.lightningCapacity *
+                            currentData.bitcoinPrice
+                        )
+                      )}
+                    </div>
                   </div>
                   <div className="stat">
                     <div className="stat-label">Public Node Count</div>
-                    <div className="stat-value">{format(currentData.lightningNodes)}</div>
+                    <div className="stat-value">
+                      {format(currentData.lightningNodes)}
+                    </div>
                   </div>
                   <div className="stat">
                     <div className="stat-label">Public Channel Count</div>
-                    <div className="stat-value">{format(currentData.lightningChannels)}</div>
+                    <div className="stat-value">
+                      {format(currentData.lightningChannels)}
+                    </div>
                   </div>
-                
-             
                 </div>
               </section>
             </div>
           </main>
         </div>
       )}
-    </div>
+    </Layout>
   )
 }
 

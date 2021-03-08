@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Bitcoin Stats`,
+    title: `Bitcoin-Stats`,
     description: `Bitcoin Statistics page with data about markets, blockchain, network, UTXOs, mining, competitors, and mempool.`,
     author: `@gatsbyjs`,
   },

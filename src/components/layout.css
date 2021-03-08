@@ -14,6 +14,24 @@ body {
   padding: 0;
 }
 
+header {
+  text-align: center;
+  padding: 60px 0; 
+}
+header a {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+}
+header a svg {
+  margin-right: 12px;
+  transform: translateY(7px);
+  color: gold;
+ font-size: 32px;
+}
+
 .container {
   width: 1380px;
   margin: 0 auto;
@@ -35,12 +53,7 @@ main {
   padding-bottom: 60px;
 }
 
-main h1.title {
-  text-align: center;
-  padding-top: 20px;
-  margin-bottom: 60px;
-  font-size: 14px;
-}
+
 
 main img {
   object-fit: cover;
