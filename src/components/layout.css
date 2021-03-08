@@ -15,18 +15,22 @@ body {
 }
 
 .container {
-  width: 420px;
+  width: 1380px;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 section {
   margin-bottom: 60px;
   width: 420px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 main {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   min-height: 100vh;
   padding-bottom: 60px;
 }
@@ -70,12 +74,26 @@ h3 {
 .stat .stat-label {
   font-size: 17px;
   color: rgb(200,200,200);
+  color: rgb(100,100,100);
+  color: rgb(50,50,50);
+  min-width: 120px;
 }
 .stat .stat-value {
   font-size: 17px;
   font-weight: 400;
-
+  min-width: 120px;
+  text-align: right;
 }
+
+.comparisons-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
 
 .header-image {
   width: 420px;
