@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, ogImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -21,12 +21,21 @@ function SEO({ description, lang, meta, title }) {
             author
           }
         }
+        ogImage: file(absolutePath: { regex: "/og_title.jpg/" }) {
+          childImageSharp {
+            fluid(maxWidth: 400) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     `
   )
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+
+  console.log(`https://bitcoin-stats.netlify.app${ogImage.childImageSharp.fluid.src}`);
 
   return (
     <Helmet
@@ -53,6 +62,10 @@ function SEO({ description, lang, meta, title }) {
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: `https://bitcoin-stats.netlify.app${ogImage.childImageSharp.fluid.src}`,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
@@ -67,6 +80,14 @@ function SEO({ description, lang, meta, title }) {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary_large_image`,
+        },
+        {
+          name: `twitter:image`,
+          content: `https://bitcoin-stats.netlify.app${ogImage.childImageSharp.fluid.src}`,
         },
       ].concat(meta)}
     />
