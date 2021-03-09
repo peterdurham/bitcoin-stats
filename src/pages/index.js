@@ -44,75 +44,6 @@ const marketNames = {
   TSLA: "Tesla",
 }
 
-const stockMarkets = [
-  {
-    abbreviation: "SA",
-    name: "Saudi Aramco",
-    marketCapDollars: 2064000000000,
-  },
-  {
-    abbreviation: "APPL",
-    name: "Apple",
-    marketCapDollars: 2038000000000,
-  },
-  {
-    abbreviation: "MICR",
-    name: "Microsoft",
-    marketCapDollars: 1747000000000,
-  },
-  {
-    abbreviation: "AMZN",
-    name: "Amazon",
-    marketCapDollars: 1511000000000,
-  },
-  {
-    abbreviation: "ALPH",
-    name: "Alphabet",
-    marketCapDollars: 1416000000000,
-  },
-  {
-    abbreviation: "TEN",
-    name: "Tencent",
-    marketCapDollars: 856000000000,
-  },
-  {
-    abbreviation: "FB",
-    name: "Facebook",
-    marketCapDollars: 752000000000,
-  },
-  {
-    abbreviation: "BABA",
-    name: "Alibaba",
-    marketCapDollars: 645000000000,
-  },
-  {
-    abbreviation: "TSMC",
-    name: "Tawain Semiconductor",
-    marketCapDollars: 587000000000,
-  },
-  {
-    abbreviation: "BRK-A",
-    name: "Berkshire Hathaway",
-    marketCapDollars: 581000000000,
-  },
-  {
-    abbreviation: "TSLA",
-    name: "Tesla",
-    marketCapDollars: 574000000000,
-  },
-]
-const assetMarkets = [
-  {
-    abbreviation: "GOLD",
-    name: "Gold",
-    marketCapDollars: 10787000000000,
-  },
-  {
-    abbreviation: "SILVER",
-    name: "Silver",
-    marketCapDollars: 1382000000000,
-  },
-]
 
 const IndexPage = () => {
   const [currentData, setCurrentData] = React.useState(null)
@@ -154,7 +85,6 @@ const IndexPage = () => {
   }, [error])
 
   const date = new Date()
-  const time = date.getTime() / 1000
   const accurateHeight = 672893
   const accurateBitcoins = 18642882.38009877
 
@@ -197,14 +127,14 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Bitcoin-Stats Home" description="Bitcoin statistics website based on regularly updated node and market data. Statistics on blockchain, mining, mempool, network, halvening, and lightning information." />
       {currentData && (
         <div>
           <main>
             <div className="container">
               <section>
                 <h2>Markets</h2>
-                <img className="header-image" src={CoinsHeader} />
+                <img className="header-image" src={CoinsHeader} alt="coins header"/>
 
                 <div className="stats">
                   <div className="stat">
@@ -297,7 +227,7 @@ const IndexPage = () => {
               </section>
               <section>
                 <h2>Blockchain</h2>
-                <img className="header-image" src={BlockchainHeader} />
+                <img className="header-image" src={BlockchainHeader} alt="blockchain header"/>
 
                 <div className="stats">
                   <Stat
@@ -357,7 +287,7 @@ const IndexPage = () => {
               </section>
               <section>
                 <h2>Mining</h2>
-                <img className="header-image" src={MiningHeader} />
+                <img className="header-image" src={MiningHeader} alt="mining header"/>
 
                 <div className="stats">
                   <Stat
@@ -426,7 +356,7 @@ const IndexPage = () => {
 
               <section>
                 <h2>Markets Comparison</h2>
-                <img className="header-image" src={CompetitionHeader} />
+                <img className="header-image" src={CompetitionHeader} alt="market comparison header" />
                 <div className="comparisons-header">
                   <div>Market</div>
                   <div>% progress</div>
@@ -453,7 +383,7 @@ const IndexPage = () => {
                           <div className="stat-label">
                             {marketNames[market.abbreviation]}
                           </div>
-                          <div>
+                          <div class="stat-percentage">
                             {(
                               (totalBitcoins / market.marketCapBitcoin) *
                               100
@@ -492,7 +422,7 @@ const IndexPage = () => {
                           <div className="stat-label">
                             {marketNames[market.abbreviation]}
                           </div>
-                          <div>
+                          <div class="stat-percentage">
                             {(
                               (totalBitcoins / market.marketCapBitcoin) *
                               100
@@ -509,7 +439,7 @@ const IndexPage = () => {
               </section>
               <section>
                 <h2>Network</h2>
-                <img className="header-image" src={NetworkHeader} />
+                <img className="header-image" src={NetworkHeader} alt="networks header" />
                 <div className="stats">
                   <Stat
                     label="Bitcoin Nodes"
@@ -554,7 +484,7 @@ const IndexPage = () => {
               </section>
               <section>
                 <h2>Halvening</h2>
-                <img className="header-image" src={HalveningHeader} />
+                <img className="header-image" src={HalveningHeader} alt="halvening header" />
 
                 <div className="stats">
                   <Stat
@@ -611,7 +541,7 @@ const IndexPage = () => {
               </section> */}
               <section>
                 <h2>Mempool</h2>
-                <img className="header-image" src={MempoolHeader} />
+                <img className="header-image" src={MempoolHeader} alt="mempool header" />
                 <div className="stats">
                   <Stat
                     label="Mempool Size"
@@ -651,7 +581,7 @@ const IndexPage = () => {
               </section>
               <section>
                 <h2>Lightning</h2>
-                <img className="header-image" src={UTXOsHeader} />
+                <img className="header-image" src={UTXOsHeader} alt="lightning header" />
                 <div className="stats">
                   <div className="stat">
                     <div className="stat-label">Public Capacity</div>
