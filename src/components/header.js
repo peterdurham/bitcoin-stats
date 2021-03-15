@@ -8,11 +8,6 @@ const Header = ({ siteTitle }) => (
       <h1>
         <Link
           to="/"
-          style={{
-            textDecoration: `none`,
-            color: "rgb(50,50,50)"
-          }}
-          className="home-link"
         >
           <BitcoinStatsIcon />
           {siteTitle}
