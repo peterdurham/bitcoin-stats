@@ -123,8 +123,6 @@ const IndexPage = () => {
     nextHalveningDate = new Date(nextHalvening).toLocaleDateString()
   }
 
-  console.log(currentData)
-
   return (
     <Layout>
       <SEO title="Bitcoin-Stats Home" description="Bitcoin statistics website based on regularly updated node and market data. Statistics on blockchain, mining, mempool, network, halvening, and lightning information." />
