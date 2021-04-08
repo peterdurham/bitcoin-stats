@@ -352,7 +352,7 @@ const IndexPage = () => {
                 </div>
               </section>
 
-              <section>
+              {/* <section>
                 <h2>Markets Comparison</h2>
                 <img className="header-image" src={CompetitionHeader} alt="market comparison header" />
                 <div className="comparisons-header">
@@ -434,7 +434,7 @@ const IndexPage = () => {
                       )
                     })}
                 </div>
-              </section>
+              </section> */}
               <section>
                 <h2>Network</h2>
                 <img className="header-image" src={NetworkHeader} alt="networks header" />
@@ -480,49 +480,7 @@ const IndexPage = () => {
                   </div> */}
                 </div>
               </section>
-              <section>
-                <h2>Halvening</h2>
-                <img className="header-image" src={HalveningHeader} alt="halvening header" />
-
-                <div className="stats">
-                  <Stat
-                    label="Blocks Left"
-                    value={format(840000 - currentData.bestBlockHeight)}
-                    units="blocks"
-                  />
-                  <Stat
-                    label="Days Left"
-                    value={format(
-                      ((840000 - currentData.bestBlockHeight) / 144).toFixed(2)
-                    )}
-                    units="days"
-                  />
-                  <div className="stat">
-                    <div className="stat-label">Next Date (estimated)</div>
-                    <div className="stat-value">{nextHalveningDate}</div>
-                  </div>
-                  <Stat
-                    label="Coins Left"
-                    value={format(
-                      (840000 - currentData.bestBlockHeight) * 6.25
-                    )}
-                    units="BTC"
-                  />
-
-                  <Stat
-                    label="Bitcoin Stock to flow"
-                    value={(
-                      ((currentData.bestBlockHeight - accurateHeight) * 6.25 +
-                        accurateBitcoins) /
-                      (900 * 365)
-                    ).toFixed(2)}
-                  />
-                  {/* <div className="stat">
-                    <div className="stat-label">Gold Stock to flow</div>
-                    <div className="stat-value">59</div>
-                  </div> */}
-                </div>
-              </section>
+              
               {/* <section>
                 <h2>UTXOs</h2>
                 <img className="header-image" src={UTXOsHeader} />
@@ -611,6 +569,49 @@ const IndexPage = () => {
                       {format(currentData.lightningChannels)}
                     </div>
                   </div>
+                </div>
+              </section>
+              <section>
+                <h2>Halvening</h2>
+                <img className="header-image" src={HalveningHeader} alt="halvening header" />
+
+                <div className="stats">
+                  <Stat
+                    label="Blocks Left"
+                    value={format(840000 - currentData.bestBlockHeight)}
+                    units="blocks"
+                  />
+                  <Stat
+                    label="Days Left"
+                    value={format(
+                      ((840000 - currentData.bestBlockHeight) / 144).toFixed(2)
+                    )}
+                    units="days"
+                  />
+                  <div className="stat">
+                    <div className="stat-label">Next Date (estimated)</div>
+                    <div className="stat-value">{nextHalveningDate}</div>
+                  </div>
+                  <Stat
+                    label="Coins Left"
+                    value={format(
+                      (840000 - currentData.bestBlockHeight) * 6.25
+                    )}
+                    units="BTC"
+                  />
+
+                  <Stat
+                    label="Bitcoin Stock to flow"
+                    value={(
+                      ((currentData.bestBlockHeight - accurateHeight) * 6.25 +
+                        accurateBitcoins) /
+                      (900 * 365)
+                    ).toFixed(2)}
+                  />
+                  {/* <div className="stat">
+                    <div className="stat-label">Gold Stock to flow</div>
+                    <div className="stat-value">59</div>
+                  </div> */}
                 </div>
               </section>
             </div>
