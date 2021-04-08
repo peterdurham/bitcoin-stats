@@ -108,8 +108,8 @@ h3 {
   min-width: 120px;
 }
 .stat .stat-value {
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 600;
   min-width: 120px;
   text-align: right;
 }
@@ -151,6 +151,7 @@ h3 {
   }
   .stat .stat-value {
     font-size: 14px;
+
   }
   .stat .stat-percentage {
     font-size: 14px;
